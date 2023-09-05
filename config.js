@@ -228,7 +228,7 @@ var config = {
             hidden: false,
             title: '注文津海水浴場  BTS  Spring Day',
             image: 'https://ibighit.com/bts/images/bts/discography/you_never_walk_alone/photo-19-m.jpg',
-            description: '',
+            description: 'ここではメンバーのジミンがスニーカーを拾うシーンが撮影されました。また、近くの香湖(ヒャンホ)海岸では Spring Dayが収録されているアルバム「YOU NEVER WALK ALONE」のジャケット撮影地として有名です。ジャケット撮影で使用されていたバス停は元々セットで撮影後に撤去されていましたが、ARMY(ファン)からの要望で再度「防弾少年団バス停」として設置されています。ファンとしては必見の地ですね！！',
             location: {
                center: [128.81855, 37.91122],
 		zoom: 15.55,
