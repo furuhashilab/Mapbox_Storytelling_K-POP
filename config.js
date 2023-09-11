@@ -12,7 +12,7 @@ var config = {
     auto: false,
     title: 'K-POP MV聖地巡礼',
     subtitle: 'K-POPアイドルのMVが撮影された場所を巡っていきましょう！',
-    byline: 'By a Mapbox interns,
+    byline: 'By Mapbox interns,
     footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
     chapters: [
         {
