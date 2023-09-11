@@ -17,15 +17,15 @@ var config = {
     chapters: [
         {
             id: 'slug-style-id',
-            alignment: 'left',
+            alignment: 'right',
             hidden: false,
             title: 'K-POP MV聖地巡礼',
             image: '',
             description: 'ここ約10年間、BTSやBLACKPINKなどの世界的アーティストの誕生や実力を持った第4世代と呼ばれる新人グループの登場で再びK-POPブームが巻き起こっています。 <br> ここでは、ストーリーテリングという手法を用いて日本と韓国でMVが撮影された場所を紹介していきます！是非気になるスポット、推しが撮影していた場所を見つけ、訪れてみてください！',
             location: {
-                center: [137.81976, 37.00182],
-		zoom: 4.31,
-		pitch: 0.47,
+                center: [139.98232, 39.86222],
+		zoom: 4.06,
+		pitch: 0.00,
 		bearing: 0.00
             },
             mapAnimation: 'flyTo',
