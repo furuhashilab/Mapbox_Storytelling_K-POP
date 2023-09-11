@@ -243,7 +243,7 @@ var config = {
         },
 	{
             id: 'twelfth-identifier',
-            alignment: 'left',
+            alignment: 'right',
             hidden: false,
             title: '竹島海水浴場　New Jeans Zero',
             image: 'https://minkara.carview.co.jp/image.aspx?src=https%3a%2f%2fcdn.snsimg.carview.co.jp%2fminkara%2fspot%2f000%2f000%2f846%2f272%2f846272%2f846272.jpg%3fct%3d891bb5dd12c3',
