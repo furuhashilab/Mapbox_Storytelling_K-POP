@@ -247,7 +247,7 @@ var config = {
             hidden: false,
             title: '竹島海水浴場　New Jeans Zero',
             image: 'https://minkara.carview.co.jp/image.aspx?src=https%3a%2f%2fcdn.snsimg.carview.co.jp%2fminkara%2fspot%2f000%2f000%2f846%2f272%2f846272%2f846272.jpg%3fct%3d891bb5dd12c3',
-            description: 'ここでは、New Jeansとコカコーラのコラボレーション曲である「Zero」が撮影されました。「コカコーラ マシッタ(おいしい)」という歌詞が印象的ですね！海水浴場ですので、夏の際は写真撮影とともに海水浴もぜひ楽しんでみてください！ <br> <br> 住所：1-75 In-gu-ri, Hyeonnam-myeon, Yangyang-gun, Gangwon-do <br> 最寄バス停「斗昌市辺理」',
+            description: 'ここでは、New Jeansとコカコーラのコラボレーション曲である「Zero」が撮影されました。「コカコーラ マシッタ(おいしい)」という歌詞が印象的ですね！海水浴場ですので、夏の際は写真撮影とともに海水浴もぜひ楽しんでみてください！ <br> <br> 住所：江原道 襄陽郡 県南面 昌里道4 <br> 最寄バス停「斗昌市辺理」',
             location: {
                 center: [128.76035, 37.97338],
 		zoom: 16.86,
