@@ -23,10 +23,10 @@ var config = {
             image: '',
             description: 'ここ約10年間、BTSやBLACKPINKなどの世界的アーティストの誕生や実力を持った第4世代と呼ばれる新人グループの登場で再びK-POPブームが巻き起こっています。 <br> ここでは、ストーリーテリングという手法を用いて日本と韓国でMVが撮影された場所を紹介していきます！是非気になるスポット、推しが撮影していた場所を見つけ、訪れてみてください！',
             location: {
-                center: [-122.418398, 37.759483],
-                zoom: 8.5,
-                pitch: 60,
-                bearing: 0
+                center: [137.81976, 37.00182],
+		zoom: 4.31,
+		pitch: 0.47,
+		bearing: 0.00
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
@@ -287,10 +287,10 @@ var config = {
             image: '',
             description: 'ここまで計12のMV撮影スポットを紹介してきました。気になるスポット、推しが撮影していた場所は見つかったでしょうか。MV以外でも、公式SNSでアップされた画像が、自分が普段何気なく歩いている街や道路だったりします。そういったスポットを見つけて歩くのも楽しいと思います！ <br> 推し活やスポット巡り、これからもマナーを守って楽しんでください！！ <br> <br> Thank you for watching!!',
             location: {
-                center: [-58.54195, -34.71600],
-                zoom: 4,
-                pitch: 0,
-                bearing: 0
+                center: [137.81976, 37.00182],
+		zoom: 4.31,
+		pitch: 0.47,
+		bearing: 0.00
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
