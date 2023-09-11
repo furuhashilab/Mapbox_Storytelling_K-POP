@@ -171,7 +171,7 @@ var config = {
             hidden: false,
             title: '「横浜港大さん橋」  Stray Kids  There',
             image: 'https://anotherview-location.com/wp-content/uploads/2023/03/0010.jpg',
-            description: 'メンバーで、低音ボイスとお顔が魅力的な「Felix」はみなとみらいの「横浜港大さん橋」に訪れています。ぜひ本人と同じ画角で写真を撮ってみてください！ <br>  <br> 住所：神奈川県横浜市中区海岸通１丁目1−４ <br>  <br> 今回ご紹介した曲「There」の撮影場所のほとんどは観光地かつアクセスの良い場所で撮られているため、東京都心部、横浜を訪れた際は立ち寄って本人たちの奇跡を辿ってみてはいかがでしょうか',
+            description: 'Stray Kidsのメンバーで、低音ボイスとお顔が魅力的な「Felix」はみなとみらいの「横浜港大さん橋」に訪れています。ぜひ本人と同じ画角で写真を撮ってみてください！ <br>  <br> 住所：神奈川県横浜市中区海岸通１丁目1−４ <br>  <br> 今回ご紹介した曲「There」の撮影場所のほとんどは観光地かつアクセスの良い場所で撮られているため、東京都心部、横浜を訪れた際は立ち寄って本人たちの奇跡を辿ってみてはいかがでしょうか',
             location: {
                 center: [139.64665, 35.45090],
 		zoom: 15.96,
@@ -264,9 +264,9 @@ var config = {
             id: 'thirteenth-identifier',
             alignment: 'left',
             hidden: false,
-            title: 'ゴールデンスカイリゾート　　MONSTA X  Love Killa   Stray Kids  Back Door',
-            image: 'https://noritter.com/Bboard/thumb_new.php?file=/upload/blogbody/434165_1658562354_0.410&width=960',
-            description: '',
+            title: '仁川スタートアップパーク　　Stray Kids  MIROH',
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBE4tUkf-4CtqOreLB-vFocWl-wzxlJswYPQ&usqp=CAU',
+            description: '「Stray Kids」の「MIROH」MVのCG以外のパートのほとんどがこちらの施設で撮影されました。この施設はスタートアップ企業の支援を行なっている場所ですが、一般の方でも出入りが可能なので、ぜひ訪れてみてください！ <br> <br> 住所：仁川 延寿区コンベンシア大路 204 <br> 最寄駅：地下鉄仁川1号線仁川大入口駅',
             location: {
                 center: [6.15116, 46.20595],
                 zoom: 12.52,
