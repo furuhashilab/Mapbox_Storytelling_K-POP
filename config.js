@@ -264,9 +264,9 @@ var config = {
             id: 'thirteenth-identifier',
             alignment: 'left',
             hidden: false,
-            title: '',
-            image: './path/to/image/source.png',
-            description: '！',
+            title: 'ゴールデンスカイリゾート　　MONSTA X  Love Killa   Stray Kids  Back Door',
+            image: 'https://noritter.com/Bboard/thumb_new.php?file=/upload/blogbody/434165_1658562354_0.410&width=960',
+            description: '',
             location: {
                 center: [6.15116, 46.20595],
                 zoom: 12.52,
