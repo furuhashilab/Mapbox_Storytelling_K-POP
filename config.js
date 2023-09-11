@@ -268,29 +268,10 @@ var config = {
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBE4tUkf-4CtqOreLB-vFocWl-wzxlJswYPQ&usqp=CAU',
             description: '「Stray Kids」の「MIROH」MVのCG以外のパートのほとんどがこちらの施設で撮影されました。この施設はスタートアップ企業の支援を行なっている場所ですが、一般の方でも出入りが可能なので、ぜひ訪れてみてください！ <br> <br> 住所：仁川 延寿区コンベンシア大路 204 <br> 最寄駅：地下鉄仁川1号線仁川大入口駅',
             location: {
-                center: [6.15116, 46.20595],
-                zoom: 12.52,
-                pitch: 8.01,
-                bearing: 0.00
-            },
-            mapAnimation: 'flyTo',
-            rotateAnimation: false,
-            callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
-        },
-	{
-            id: 'fourteenth-identifier',
-            alignment: 'left',
-            hidden: false,
-            title: '',
-            image: './path/to/image/source.png',
-            description: '！',
-            location: {
-                center: [6.15116, 46.20595],
-                zoom: 12.52,
-                pitch: 8.01,
-                bearing: 0.00
+                center: [126.63932, 37.38782],
+		zoom: 16.35,
+		pitch: 68.73,
+		bearing: 0.00,
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
@@ -299,7 +280,7 @@ var config = {
             onChapterExit: []
         },
         {
-            id: 'fifteenth-chapter',
+            id: 'fourteenth-chapter',
             alignment: 'fully',
             hidden: false,
             title: 'last Title',
