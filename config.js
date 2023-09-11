@@ -192,10 +192,10 @@ var config = {
             image: './path/to/image/source.png',
             description: '韓国ではどのような場所でMVが撮影されているのでしょうか。みていきましょう！',
             location: {
-                center: [6.15116, 46.20595],
-                zoom: 12.52,
-                pitch: 8.01,
-                bearing: 0.00
+                center: [128.40816, 36.28457],
+		zoom: 6.55,
+		pitch: 0.00,
+		bearing: 0.00,
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
