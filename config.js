@@ -12,7 +12,7 @@ var config = {
     auto: false,
     title: 'K-POP MV聖地巡礼',
     subtitle: 'K-POPアイドルのMVが撮影された場所を巡っていきましょう！',
-    byline: 'By Mapbox interns,
+    byline: 'By Mapbox interns',
     footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
     chapters: [
         {
@@ -56,7 +56,7 @@ var config = {
                 center: [127.94124, 26.70487],
 		zoom: 17.50,
 		pitch: 58.50,
-		bearing: -180.00
+		bearing: -180.00,
                 // flyTo additional controls-
                 // These options control the flight curve, making it move
                 // slowly and zoom out almost completely before starting
@@ -74,7 +74,7 @@ var config = {
             id: 'third-identifier',
             alignment: 'left',
             hidden: false,
-            title: '「読谷村残波岬」 BTS  Let Go',
+	title: '「読谷村残波岬」 BTS  Let Go',
             image: 'https://www.surairu-okinawa.com/wp-content/uploads/2023/02/87716fbeba481e9e9f8d8f9f05e8834f-1536x1040.jpg',
             description: 'こちらは沖縄県本島中部に位置する読谷村残波岬というスポットです。BTSの日本オリジナルアルバム「Face Yourself」に収録されている日本語曲「Let Go」のMV撮影地もなんと沖縄県です！残波岬の道で撮影されたメンバーのVのシーンを真似して写真を撮ることがARMY(ファン)の中でトレンドとなっています。すぐ近くの残波岬公園にはバスケットボールやサッカー、テニスができる施設があるので残波岬に訪れた際はそちらにも足を運んでみてはいかがでしょうか。 <br>  <br> 住所：沖縄県中頭郡読谷村宇座1861 <br> 駐車場：約100台(無料)',
             location: {
@@ -89,7 +89,7 @@ var config = {
             onChapterEnter: [],
             onChapterExit: []
         },
- 	{
+	{
             id: 'fourth-identifier',
             alignment: 'right',
             hidden: false,
@@ -189,7 +189,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: 'MV聖地巡り　in 韓国',
-            image: './path/to/image/source.png',
+            image: '',
             description: '韓国ではどのような場所でMVが撮影されているのでしょうか。みていきましょう！',
             location: {
                 center: [128.40816, 36.28457],
@@ -246,7 +246,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: '竹島海水浴場　New Jeans Zero',
-            image: 'https://minkara.carview.co.jp/image.aspx?src=https%3a%2f%2fcdn.snsimg.carview.co.jp%2fminkara%2fspot%2f000%2f000%2f846%2f272%2f846272%2f846272.jpg%3fct%3d891bb5dd12c3',
+            image: 'https://image.kmib.co.kr/online_image/2018/0820/201808202153_11130923995832_1.jpg',
             description: 'ここでは、New Jeansとコカコーラのコラボレーション曲である「Zero」が撮影されました。「コカコーラ マシッタ(おいしい)」という歌詞が印象的ですね！海水浴場ですので、夏の際は写真撮影とともに海水浴もぜひ楽しんでみてください！ <br> <br> 住所：江原道 襄陽郡 県南面 昌里道4 <br> 最寄バス停「斗昌市辺理」',
             location: {
                 center: [128.76035, 37.97343],
