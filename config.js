@@ -1,20 +1,20 @@
 var config = {
-    style: 'mapbox://styles/wataruyoshida/clk3ipjah004b01ra3tse6xxf/draft',
+    style: 'mapbox://styles/wataruyoshida/clk3ipjah004b01ra3tse6xxf',
     accessToken: 'pk.eyJ1Ijoid2F0YXJ1eW9zaGlkYSIsImEiOiJjbDFtd3d6YjgwM3FkM2pxN2R6cnZ3a2FqIn0.6A1hUsWM-2kBi7_mqTvJMg',
-    showMarkers: true,
+    showMarkers: false,
     markerColor: '#3FB1CE',
     //projection: 'equirectangular',
     //Read more about available projections here
     //https://docs.mapbox.com/mapbox-gl-js/example/projections/
-    inset: true,
+    inset: false,
     theme: 'dark',
     use3dTerrain: false, //set true for enabling 3D maps.
     auto: false,
     title: 'K-POP MV聖地巡礼',
     subtitle: 'K-POPアイドルのMVが撮影された場所を巡っていきましょう！',
     byline: 'By Mapbox interns',
-    footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
-    chapters: [
+    footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',    
+	chapters: [
         {
             id: 'slug-style-id',
             alignment: 'right',
@@ -74,7 +74,7 @@ var config = {
             id: 'third-identifier',
             alignment: 'left',
             hidden: false,
-	title: '「読谷村残波岬」 BTS  Let Go',
+title: '「読谷村残波岬」 BTS  Let Go',
             image: 'https://user-images.githubusercontent.com/93134160/268441326-b2f37054-00e3-474e-9aec-da025f49e0e9.png',
             description: 'こちらは沖縄県本島中部に位置する読谷村残波岬というスポットです。BTSの日本オリジナルアルバム「Face Yourself」に収録されている日本語曲「Let Go」のMV撮影地もなんと沖縄県です！残波岬の道で撮影されたメンバーのVのシーンを真似して写真を撮ることがARMY(ファン)の中でトレンドとなっています。すぐ近くの残波岬公園にはバスケットボールやサッカー、テニスができる施設があるので残波岬に訪れた際はそちらにも足を運んでみてはいかがでしょうか。 <br>  <br> 住所：沖縄県中頭郡読谷村宇座1861 <br> 駐車場：約100台(無料) <br>  <br> image by pika_sky under a CC BY-SA license <br> ©︎ OpenStreetMap contributors(https://www.openstreetmap.org/copyright)',
             location: {
@@ -186,7 +186,7 @@ var config = {
         },
 	{
             id: 'ninth-identifier',
-            alignment: 'left',
+            alignment: 'right',
             hidden: false,
             title: 'MV聖地巡り　in 韓国',
             image: '',
@@ -208,8 +208,8 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: '「龍馬(ヨンマ)ランド」  TWICE  Like OHH-AHH, EXO  Ko Ko Bop',
-            image: '',
-            description: '龍馬(ヨンマ)ランドとは、現在は閉園していますが「合法廃墟遊園地」として、入場料を払えば現在も誰でも入ることができる珍しい遊園地です。ここでは、たくさんのアイドルがMVやジャケット写真、ロケの撮影に訪れています。TWICE,EXOの他にも、BTSやBLACKPINK,TXTなど、有名アイドルのほとんどが一度はこの地を訪れています。特に、園内のメリーゴーランドでは様々なアイドルが撮影しており大変人気なスポットとなっています。 <br>  <br> 住所：ソウル特別市 中浪区 忘憂洞 山69-1 <br> 営業時間：10:00~18:00 <br> 最寄駅「忘憂駅」より徒歩約20分(タクシー推奨) <br> チケット予約ページ：https://www.creatrip.com/ja/spot/13325',
+            image: 'https://user-images.githubusercontent.com/93134160/269315565-115bf384-f930-40f2-8874-c7fa0394c286.png',
+            description: '龍馬(ヨンマ)ランドとは、現在は閉園していますが「合法廃墟遊園地」として、入場料を払えば現在も誰でも入ることができる珍しい遊園地です。ここでは、たくさんのアイドルがMVやジャケット写真、ロケの撮影に訪れています。TWICE,EXOの他にも、BTSやBLACKPINK,TXTなど、有名アイドルのほとんどが一度はこの地を訪れています。特に、園内のメリーゴーランドでは様々なアイドルが撮影しており大変人気なスポットとなっています。 <br>  <br> 住所：ソウル特別市 中浪区 忘憂洞 山69-1 <br> 営業時間：10:00~18:00 <br> 最寄駅「忘憂駅」より徒歩約20分(タクシー推奨) <br> チケット予約ページ：https://www.creatrip.com/ja/spot/13325 <br> <br> 画像出典：https://en.wikipedia.org/wiki/Yongma_Land',
             location: {
                center: [127.10569, 37.59443],
 		zoom: 15.77,
@@ -227,8 +227,8 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: '注文津海水浴場  BTS  Spring Day',
-            image: '',
-            description: 'ここではメンバーのジミンがスニーカーを拾うシーンが撮影されました。また、近くの香湖(ヒャンホ)海岸では Spring Dayが収録されているアルバム「YOU NEVER WALK ALONE」のジャケット撮影地として有名です。ジャケット撮影で使用されていたバス停は元々セットで撮影後に撤去されていましたが、ARMY(ファン)からの要望で再度「防弾少年団バス停」として設置されています。ファンとしては必見の地ですね！！ <br> <br> 住所：江原道江陵市注文津邑香湖里8-39 <br> 最寄バス停「注文津海辺」',
+            image: 'https://user-images.githubusercontent.com/93134160/269314961-02185503-0000-48f3-ad4a-962d923060be.png',
+            description: 'ここではメンバーのジミンがスニーカーを拾うシーンが撮影されました。また、近くの香湖(ヒャンホ)海岸では Spring Dayが収録されているアルバム「YOU NEVER WALK ALONE」のジャケット撮影地として有名です。ジャケット撮影で使用されていたバス停は元々セットで撮影後に撤去されていましたが、ARMY(ファン)からの要望で再度「防弾少年団バス停」として設置されています。ファンとしては必見の地ですね！！ <br> <br> 住所：江原道江陵市注文津邑香湖里8-39 <br> 最寄バス停「注文津海辺」 <br> <br> 画像出典：https://japanese.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=219&vcontsId=136501',
             location: {
                center: [128.81855, 37.91122],
 		zoom: 15.55,
@@ -246,8 +246,8 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: '竹島海水浴場　New Jeans Zero',
-            image: '',
-            description: 'ここでは、New Jeansとコカコーラのコラボレーション曲である「Zero」が撮影されました。「コカコーラ マシッタ(おいしい)」という歌詞が印象的ですね！海水浴場ですので、夏の際は写真撮影とともに海水浴もぜひ楽しんでみてください！ <br> <br> 住所：江原道 襄陽郡 県南面 昌里道4 <br> 最寄バス停「斗昌市辺理」',
+            image: 'https://user-images.githubusercontent.com/93134160/269315876-cdf8b214-5bc3-4ec0-80ee-eff8b7d04616.png',
+            description: 'ここでは、New Jeansとコカコーラのコラボレーション曲である「Zero」が撮影されました。「コカコーラ マシッタ(おいしい)」という歌詞が印象的ですね！海水浴場ですので、夏の際は写真撮影とともに海水浴もぜひ楽しんでみてください！ <br> <br> 住所：江原道 襄陽郡 県南面 昌里道4 <br> 最寄バス停「斗昌市辺理」 <br> <br> 画像出典：http://news.kmib.co.kr/article/view.asp?arcid=0923995832',
             location: {
                 center: [128.76035, 37.97343],
 		zoom: 16.05,
@@ -265,8 +265,8 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: '仁川スタートアップパーク　　Stray Kids  MIROH',
-            image: '',
-            description: '「Stray Kids」の「MIROH」MVのCG以外のパートのほとんどがこちらの施設で撮影されました。この施設はスタートアップ企業の支援を行なっている場所ですが、一般の方でも出入りが可能なので、ぜひ訪れてみてください！ <br> <br> 住所：仁川 延寿区コンベンシア大路 204 <br> 最寄駅：地下鉄仁川1号線仁川大入口駅',
+            image: 'https://user-images.githubusercontent.com/93134160/269316286-a9e1ecb7-0e45-47c9-8aca-6e76870742f1.png',
+            description: '「Stray Kids」の「MIROH」MVのCG以外のパートのほとんどがこちらの施設で撮影されました。この施設はスタートアップ企業の支援を行なっている場所ですが、一般の方でも出入りが可能なので、ぜひ訪れてみてください！ <br> <br> 住所：仁川 延寿区コンベンシア大路 204 <br> 最寄駅：地下鉄仁川1号線仁川大入口駅 <br> <br> 画像出典：https://4travel.jp/os_hotel-10565148',
             location: {
                 center: [126.63932, 37.38782],
 		zoom: 16.35,
@@ -285,7 +285,7 @@ var config = {
             hidden: false,
             title: '最後に',
             image: '',
-            description: 'ここまで計12のMV撮影スポットを紹介してきました。気になるスポット、推しが撮影していた場所は見つかったでしょうか。MV以外でも、公式SNSでアップされた画像が、自分が普段何気なく歩いている街や道路だったりします。そういったスポットを見つけて歩くのも楽しいと思います！ <br> 推し活やスポット巡り、これからもマナーを守って楽しんでください！！ <br> <br> Thank you for watching!!',
+            description: 'ここまで計11のMV撮影スポットを紹介してきました。気になるスポット、推しが撮影していた場所は見つかったでしょうか。MV以外でも、公式SNSでアップされた画像が、自分が普段何気なく歩いている街や道路だったりします。そういったスポットを見つけて歩くのも楽しいと思います！ <br> 推し活やスポット巡り、これからもマナーを守って楽しんでください！！ <br> <br> Thank you for watching!!',
             location: {
                 center: [137.81976, 37.00182],
 		zoom: 4.31,
