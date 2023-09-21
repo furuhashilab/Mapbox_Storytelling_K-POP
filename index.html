@@ -1,1 +1,491 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mapbox Storytelling</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://unpkg.com/intersection-observer@0.12.0/intersection-observer.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+    <style>
+        body {
+            margin:0;
+            padding:0;
+            font-family: sans-serif;
+        }
+        a, a:hover, a:visited {
+            color: #0071bc;
+        }
+        #map {
+            top:0;
+            height: 100vh;
+            width:100vw;
+            position: fixed;
+        }
+        #mapInset {
+            bottom:50px;
+            right:30px;
+            height: 180px;
+            width:250px;
+            max-width:100%;
+            position: fixed;
+            z-index: 1;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none;
+        }
+        #mapInset .mapboxgl-ctrl-bottom-left{
+            display: none;
+        }
+        @media (max-width: 500px) {
+            #mapInset {
+                display: none;
+            }
+        }
+        #header {
+            margin: auto;
+            width: 100%;
+            position: relative;
+            z-index: 5;
+        }
+        #header h1, #header h2, #header p {
+            margin: 0;
+            padding: 2vh 2vw;
+            text-align: center;
+        }
+        #footer {
+            width: 100%;
+            min-height: 5vh;
+            padding-top: 2vh;
+            padding-bottom: 2vh;
+            text-align: center;
+            line-height: 25px;
+            font-size: 13px;
+            position: relative;
+            z-index: 5;
+        }
+        #features {
+            padding-top: 10vh;
+            padding-bottom: 10vh;
+        }
+        .hidden {
+            visibility: hidden;
+        }
+        .centered {
+            width: 50vw;
+            margin: 0 auto;
+        }
+        .lefty {
+            width: 33vw;
+            margin-left: 5vw;
+        }
+        .righty {
+            width: 33vw;
+            margin-left: 62vw;
+        }
+        .fully {
+            width: 100%;
+            margin: auto;
+        }
+        .light {
+            color: #444;
+            background-color: #fafafa;
+        }
+        .dark {
+            color: #fafafa;
+            background-color: #444;
+        }
+        .step {
+            padding-bottom: 50vh;
+            /* margin-bottom: 10vh; */
+            opacity: 0.25;
+        }
+        .step.active {
+            opacity: 0.9;
+        }
 
+        .step div {
+            padding:  25px 50px;
+            line-height: 25px;
+            font-size: 13px;
+        }
+
+        .step img {
+            width: 100%;
+        }
+
+        @media (max-width: 750px) {
+            .centered, .lefty, .righty, .fully {
+                width: 90vw;
+                margin: 0 auto;
+            }
+        }
+
+        /* Fix issue on mobile browser where scroll breaks  */
+        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan,
+        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
+            touch-action: unset;
+        }
+
+        </style>
+</head>
+<body>
+
+<div id="map" class="mapboxgl-map"><div class="mapboxgl-canary" style="visibility: hidden;"></div><div class="mapboxgl-canvas-container"><canvas class="mapboxgl-canvas" tabindex="0" aria-label="Map" role="region" width="1770" height="1582" style="width: 885px; height: 791px;"></canvas></div><div class="mapboxgl-control-container"><div class="mapboxgl-ctrl-top-left"></div><div class="mapboxgl-ctrl-top-right"></div><div class="mapboxgl-ctrl-bottom-left"><div class="mapboxgl-ctrl" style="display: block;"><a class="mapboxgl-ctrl-logo" target="_blank" rel="noopener nofollow" href="https://www.mapbox.com/" aria-label="Mapbox logo"></a></div></div><div class="mapboxgl-ctrl-bottom-right"><div class="mapboxgl-ctrl mapboxgl-ctrl-attrib"><button class="mapboxgl-ctrl-attrib-button" type="button" aria-label="Toggle attribution"><span class="mapboxgl-ctrl-icon" aria-hidden="true" title="Toggle attribution"></span></button><div class="mapboxgl-ctrl-attrib-inner" role="list"><a href="https://www.mapbox.com/about/maps/" target="_blank" title="Mapbox" aria-label="Mapbox">© Mapbox</a> <a href="https://www.openstreetmap.org/about/" target="_blank" title="OpenStreetMap" aria-label="OpenStreetMap">© OpenStreetMap</a> <a class="mapbox-improve-map" href="https://apps.mapbox.com/feedback/?owner=wataruyoshida&amp;id=clk3ipjah004b01ra3tse6xxf&amp;access_token=pk.eyJ1Ijoid2F0YXJ1eW9zaGlkYSIsImEiOiJjbDFtd3d6YjgwM3FkM2pxN2R6cnZ3a2FqIn0.6A1hUsWM-2kBi7_mqTvJMg#/139.98/39.86/4.06" target="_blank" aria-label="Map feedback" rel="noopener nofollow">Improve this map</a></div></div></div></div></div>
+<div id="mapInset"></div>
+<div id="story"><div class="dark" id="header"><h1>K-POP MV聖地巡礼</h1><h2>K-POPアイドルのMVが撮影された場所を巡っていきましょう！</h2><p>By Mapbox interns</p></div><div id="features"><div id="slug-style-id" class="step righty active" data-scrollama-index="0"><div class="dark"><h3>K-POP MV聖地巡礼</h3><p>ここ約10年間、BTSやBLACKPINKなどの世界的アーティストの誕生や実力を持った第4世代と呼ばれる新人グループの登場で再びK-POPブームが巻き起こっています。 <br> ここでは、ストーリーテリングという手法を用いて日本と韓国でMVが撮影された場所を紹介していきます！是非気になるスポット、推しが撮影していた場所を見つけ、訪れてみてください！</p></div></div><div id="second-identifier" class="step lefty" data-scrollama-index="1"><div class="dark"><h3>「赤墓ビーチ」 TWICE  Dance The Night Away</h3><p>こちらは沖縄県今帰仁村にある赤墓(あかばか)ビーチです。TWICEの代表的な夏の曲である「Dance The Night Away」は実は沖縄県で撮影されていました！沖縄県の青い海や綺麗な砂浜をバックに踊っているのが印象的ですね！沖縄県にある数ある有名ビーチには数えられていませんが、K-POPファンであるならぜひ一度ここに訪れて本人たちと同じ画角でとってみたいものですね！　車で訪れるのがおすすめです。 <br> YouTube:https://youtu.be/Fm5iP0S1z9w?feature=shared <br>  <br> 住所：沖縄県国頭郡今帰仁村諸志 <br> 駐車場：無料（約7台）有料（約5台）</p></div></div><div id="third-identifier" class="step lefty" data-scrollama-index="2"><div class="dark"><h3>「読谷村残波岬」 BTS  Let Go</h3><img src="https://user-images.githubusercontent.com/93134160/268441326-b2f37054-00e3-474e-9aec-da025f49e0e9.png"><p>こちらは沖縄県本島中部に位置する読谷村残波岬というスポットです。BTSの日本オリジナルアルバム「Face Yourself」に収録されている日本語曲「Let Go」のMV撮影地もなんと沖縄県です！残波岬の道で撮影されたメンバーのVのシーンを真似して写真を撮ることがARMY(ファン)の中でトレンドとなっています。すぐ近くの残波岬公園にはバスケットボールやサッカー、テニスができる施設があるので残波岬に訪れた際はそちらにも足を運んでみてはいかがでしょうか。 <br>  <br> 住所：沖縄県中頭郡読谷村宇座1861 <br> 駐車場：約100台(無料) <br>  <br> image by pika_sky under a CC BY-SA license <br> ©︎ OpenStreetMap contributors(https://www.openstreetmap.org/copyright)</p></div></div><div id="fourth-identifier" class="step righty" data-scrollama-index="3"><div class="dark"><h3>「名鉄沿線」　NewJeans  Hurt (250 Remix) Special Video</h3><img src="https://user-images.githubusercontent.com/93134160/268436057-3de6e612-5e61-45b5-8678-ddb573921e53.png"><p>今話題の5人組ガールズグループ New Jeansも実は日本で撮影しており、ファンからは驚きの声がでています！愛知県名古屋市に通っている名鉄や庄内川付近で撮影されていました。沖縄のビーチや岬とは打って変わって、アクセスの良い街中で撮影されているため、ぜひ訪れてみてはいかがでしょうか。MVもノスタルジックな雰囲気で景色とマッチしています！ <br> https://youtu.be/uONSk48LW1A?feature=shared <br>  <br> 愛知県名古屋市西区枇杷島町2丁目25-8付近 <br> 最寄駅：東枇杷島駅(犬山線、名鉄名古屋本線) <br>  <br> image by mudb under a CC BY-SA license <br> ©︎ OpenStreetMap contributors(https://www.openstreetmap.org/copyright)</p></div></div><div id="fifth-identifier" class="step lefty" data-scrollama-index="4"><div class="dark"><h3>「27 MCM」 Stray Kids  There</h3><img src="https://user-images.githubusercontent.com/93134160/268436358-b034ed47-0752-4e17-8d39-a97bd3b1e743.png"><p>人気ボーイズグループ「Stray Kids」の日本語曲である「There」は東京・横浜周辺で撮影されていました。 <br> 東京都渋谷区にある「27 MCM」というお好み焼き屋は、メンバーのメインラッパー「ハン」の撮影地です。渋谷駅から徒歩約10分なため、渋谷に訪れた際はぜひ立ち寄ってみてはいかがでしょうか。本人と同じ席に座れたらラッキー！！ <br>  <br> 住所：東京都渋谷区鶯谷町６−５ <br> 営業時間：17:00~25:00 <br>  <br> image by mzaki under a CC BY-SA license <br> ©︎ OpenStreetMap contributors(https://www.openstreetmap.org/copyright)</p></div></div><div id="sixth-identifier" class="step righty" data-scrollama-index="5"><div class="dark"><h3>「YOKOHAMA AIR CABIN」  Stray Kids  There</h3><img src="https://user-images.githubusercontent.com/93134160/268436530-aaec0341-db34-403b-8b3f-3d2c976f9062.png"><p>メンバーのメインボーカル「スンミン」がMVの中で訪れた横浜市桜木町にあるエアキャビン。観光スポットとしても大変人気な施設で、横浜の市内を一望できます。 <br>  <br> 住所：神奈川県横浜市中区桜木町１丁目２００ <br> 営業時間：10:00~22:00 <br>  <br> image by mitz under a CC BY-SA license <br> ©︎ OpenStreetMap contributors(https://www.openstreetmap.org/copyright)</p></div></div><div id="seventh-identifier" class="step righty" data-scrollama-index="6"><div class="dark"><h3>「THE BAYS」  Stray Kids  There</h3><img src="https://user-images.githubusercontent.com/93134160/268436692-dae1f555-9c7d-40a6-adfc-32797d7a3460.png"><p>メンバーのメインダンサーである「リノ」はMVで横浜市中区にある「THE BAYS」のテラスを訪れました。「THE BAYS」とは横浜DeNAベイスターズが提唱する横浜スポーツタウン構想として建てられた、Sports x Creativeをテーマにした複合施設です。おしゃれな空間が広がっているので中の方もぜひ入ってみてください。 <br>  <br> 住所；神奈川県横浜市中区日本大通３４ <br>  <br> image by mura under a CC BY-SA license <br> ©︎ OpenStreetMap contributors(https://www.openstreetmap.org/copyright)</p></div></div><div id="eighth-identifier" class="step righty" data-scrollama-index="7"><div class="dark"><h3>「横浜港大さん橋」  Stray Kids  There</h3><img src="https://user-images.githubusercontent.com/93134160/268437145-e41f5341-563f-4abd-a049-01fc97efe729.png"><p>Stray Kidsのメンバーで、低音ボイスとお顔が魅力的な「Felix」はみなとみらいの「横浜港大さん橋」に訪れています。ぜひ本人と同じ画角で写真を撮ってみてください！ <br>  <br> 住所：神奈川県横浜市中区海岸通１丁目1−４ <br>  <br> image by mura under a CC BY-SA license <br> ©︎ OpenStreetMap contributors(https://www.openstreetmap.org/copyright) <br>  <br> 今回ご紹介した曲「There」の撮影場所のほとんどは観光地かつアクセスの良い場所で撮られているため、東京都心部、横浜を訪れた際は立ち寄って本人たちの奇跡を辿ってみてはいかがでしょうか</p></div></div><div id="ninth-identifier" class="step righty" data-scrollama-index="8"><div class="dark"><h3>MV聖地巡り　in 韓国</h3><p>韓国ではどのような場所でMVが撮影されているのでしょうか。みていきましょう！</p></div></div><div id="tenth-identifier" class="step righty" data-scrollama-index="9"><div class="dark"><h3>「龍馬(ヨンマ)ランド」  TWICE  Like OHH-AHH, EXO  Ko Ko Bop</h3><img src="https://user-images.githubusercontent.com/93134160/269315565-115bf384-f930-40f2-8874-c7fa0394c286.png"><p>龍馬(ヨンマ)ランドとは、現在は閉園していますが「合法廃墟遊園地」として、入場料を払えば現在も誰でも入ることができる珍しい遊園地です。ここでは、たくさんのアイドルがMVやジャケット写真、ロケの撮影に訪れています。TWICE,EXOの他にも、BTSやBLACKPINK,TXTなど、有名アイドルのほとんどが一度はこの地を訪れています。特に、園内のメリーゴーランドでは様々なアイドルが撮影しており大変人気なスポットとなっています。 <br>  <br> 住所：ソウル特別市 中浪区 忘憂洞 山69-1 <br> 営業時間：10:00~18:00 <br> 最寄駅「忘憂駅」より徒歩約20分(タクシー推奨) <br> チケット予約ページ：https://www.creatrip.com/ja/spot/13325 <br> <br> 画像出典：https://en.wikipedia.org/wiki/Yongma_Land</p></div></div><div id="eleventh-identifier" class="step lefty" data-scrollama-index="10"><div class="dark"><h3>注文津海水浴場  BTS  Spring Day</h3><img src="https://user-images.githubusercontent.com/93134160/269314961-02185503-0000-48f3-ad4a-962d923060be.png"><p>ここではメンバーのジミンがスニーカーを拾うシーンが撮影されました。また、近くの香湖(ヒャンホ)海岸では Spring Dayが収録されているアルバム「YOU NEVER WALK ALONE」のジャケット撮影地として有名です。ジャケット撮影で使用されていたバス停は元々セットで撮影後に撤去されていましたが、ARMY(ファン)からの要望で再度「防弾少年団バス停」として設置されています。ファンとしては必見の地ですね！！ <br> <br> 住所：江原道江陵市注文津邑香湖里8-39 <br> 最寄バス停「注文津海辺」 <br> <br> 画像出典：https://japanese.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=219&amp;vcontsId=136501</p></div></div><div id="twelfth-identifier" class="step righty" data-scrollama-index="11"><div class="dark"><h3>竹島海水浴場　New Jeans Zero</h3><img src="https://user-images.githubusercontent.com/93134160/269315876-cdf8b214-5bc3-4ec0-80ee-eff8b7d04616.png"><p>ここでは、New Jeansとコカコーラのコラボレーション曲である「Zero」が撮影されました。「コカコーラ マシッタ(おいしい)」という歌詞が印象的ですね！海水浴場ですので、夏の際は写真撮影とともに海水浴もぜひ楽しんでみてください！ <br> <br> 住所：江原道 襄陽郡 県南面 昌里道4 <br> 最寄バス停「斗昌市辺理」 <br> <br> 画像出典：http://news.kmib.co.kr/article/view.asp?arcid=0923995832</p></div></div><div id="thirteenth-identifier" class="step lefty" data-scrollama-index="12"><div class="dark"><h3>仁川スタートアップパーク　　Stray Kids  MIROH</h3><img src="https://user-images.githubusercontent.com/93134160/269316286-a9e1ecb7-0e45-47c9-8aca-6e76870742f1.png"><p>「Stray Kids」の「MIROH」MVのCG以外のパートのほとんどがこちらの施設で撮影されました。この施設はスタートアップ企業の支援を行なっている場所ですが、一般の方でも出入りが可能なので、ぜひ訪れてみてください！ <br> <br> 住所：仁川 延寿区コンベンシア大路 204 <br> 最寄駅：地下鉄仁川1号線仁川大入口駅 <br> <br> 画像出典：https://4travel.jp/os_hotel-10565148</p></div></div><div id="fourteenth-chapter" class="step centered" data-scrollama-index="13"><div class="dark"><h3>最後に</h3><p>ここまで計11のMV撮影スポットを紹介してきました。気になるスポット、推しが撮影していた場所は見つかったでしょうか。MV以外でも、公式SNSでアップされた画像が、自分が普段何気なく歩いている街や道路だったりします。そういったスポットを見つけて歩くのも楽しいと思います！ <br> 推し活やスポット巡り、これからもマナーを守って楽しんでください！！ <br> <br> Thank you for watching!!</p></div></div></div><div class="dark" id="footer"><p>Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.</p></div></div>
+
+<script src="./config.js"></script>
+<script>
+var initLoad = true;
+var layerTypes = {
+    'fill': ['fill-opacity'],
+    'line': ['line-opacity'],
+    'circle': ['circle-opacity', 'circle-stroke-opacity'],
+    'symbol': ['icon-opacity', 'text-opacity'],
+    'raster': ['raster-opacity'],
+    'fill-extrusion': ['fill-extrusion-opacity'],
+    'heatmap': ['heatmap-opacity']
+}
+
+var alignments = {
+    'left': 'lefty',
+    'center': 'centered',
+    'right': 'righty',
+    'full': 'fully'
+}
+
+function getLayerPaintType(layer) {
+    var layerType = map.getLayer(layer).type;
+    return layerTypes[layerType];
+}
+
+function setLayerOpacity(layer) {
+    var paintProps = getLayerPaintType(layer.layer);
+    paintProps.forEach(function(prop) {
+        var options = {};
+        if (layer.duration) {
+            var transitionProp = prop + "-transition";
+            options = { "duration": layer.duration };
+            map.setPaintProperty(layer.layer, transitionProp, options);
+        }
+        map.setPaintProperty(layer.layer, prop, layer.opacity, options);
+    });
+}
+
+var story = document.getElementById('story');
+var features = document.createElement('div');
+features.setAttribute('id', 'features');
+
+var header = document.createElement('div');
+
+if (config.title) {
+    var titleText = document.createElement('h1');
+    titleText.innerText = config.title;
+    header.appendChild(titleText);
+}
+
+if (config.subtitle) {
+    var subtitleText = document.createElement('h2');
+    subtitleText.innerText = config.subtitle;
+    header.appendChild(subtitleText);
+}
+
+if (config.byline) {
+    var bylineText = document.createElement('p');
+    bylineText.innerText = config.byline;
+    header.appendChild(bylineText);
+}
+
+if (header.innerText.length > 0) {
+    header.classList.add(config.theme);
+    header.setAttribute('id', 'header');
+    story.appendChild(header);
+}
+
+config.chapters.forEach((record, idx) => {
+    var container = document.createElement('div');
+    var chapter = document.createElement('div');
+
+    if (record.title) {
+        var title = document.createElement('h3');
+        title.innerText = record.title;
+        chapter.appendChild(title);
+    }
+
+    if (record.image) {
+        var image = new Image();
+        image.src = record.image;
+        chapter.appendChild(image);
+    }
+
+    if (record.description) {
+        var story = document.createElement('p');
+        story.innerHTML = record.description;
+        chapter.appendChild(story);
+    }
+
+    container.setAttribute('id', record.id);
+    container.classList.add('step');
+    if (idx === 0) {
+        container.classList.add('active');
+    }
+
+    chapter.classList.add(config.theme);
+    container.appendChild(chapter);
+    container.classList.add(alignments[record.alignment] || 'centered');
+    if (record.hidden) {
+        container.classList.add('hidden');
+    }
+    features.appendChild(container);
+});
+
+story.appendChild(features);
+
+var footer = document.createElement('div');
+
+if (config.footer) {
+    var footerText = document.createElement('p');
+    footerText.innerHTML = config.footer;
+    footer.appendChild(footerText);
+}
+
+if (footer.innerText.length > 0) {
+    footer.classList.add(config.theme);
+    footer.setAttribute('id', 'footer');
+    story.appendChild(footer);
+}
+
+mapboxgl.accessToken = config.accessToken;
+
+const transformRequest = (url) => {
+    const hasQuery = url.indexOf("?") !== -1;
+    const suffix = hasQuery ? "&pluginName=scrollytellingV2" : "?pluginName=scrollytellingV2";
+    return {
+      url: url + suffix
+    }
+}
+
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: config.style,
+    center: config.chapters[0].location.center,
+    zoom: config.chapters[0].location.zoom,
+    bearing: config.chapters[0].location.bearing,
+    pitch: config.chapters[0].location.pitch,
+    interactive: false,
+    transformRequest: transformRequest,
+    projection: config.projection
+});
+
+// Create a inset map if enabled in config.js
+if (config.inset) {
+ var insetMap = new mapboxgl.Map({
+    container: 'mapInset', // container id
+    style: 'mapbox://styles/mapbox/dark-v10', //hosted style id
+    center: config.chapters[0].location.center,
+    // Hardcode above center value if you want insetMap to be static.
+    zoom: 3, // starting zoom
+    hash: false,
+    interactive: false,
+    attributionControl: false,
+    //Future: Once official mapbox-gl-js has globe view enabled,
+    //insetmap can be a globe with the following parameter.
+    //projection: 'globe'
+  });
+}
+
+if (config.showMarkers) {
+    var marker = new mapboxgl.Marker({ color: config.markerColor });
+    marker.setLngLat(config.chapters[0].location.center).addTo(map);
+}
+
+// instantiate the scrollama
+var scroller = scrollama();
+
+
+map.on("load", function() {
+    if (config.use3dTerrain) {
+        map.addSource('mapbox-dem', {
+            'type': 'raster-dem',
+            'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+            'tileSize': 512,
+            'maxzoom': 14
+        });
+        // add the DEM source as a terrain layer with exaggerated height
+        map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+
+        // add a sky layer that will show when the map is highly pitched
+        map.addLayer({
+            'id': 'sky',
+            'type': 'sky',
+            'paint': {
+                'sky-type': 'atmosphere',
+                'sky-atmosphere-sun': [0.0, 0.0],
+                'sky-atmosphere-sun-intensity': 15
+            }
+        });
+    };
+
+    // As the map moves, grab and update bounds in inset map.
+    if (config.inset) {
+    map.on('move', getInsetBounds);
+    }
+    // setup the instance, pass callback functions
+    scroller
+    .setup({
+        step: '.step',
+        offset: 0.5,
+        progress: true
+    })
+    .onStepEnter(async response => {
+        var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
+        var chapter = config.chapters[current_chapter];
+        
+        response.element.classList.add('active');
+        map[chapter.mapAnimation || 'flyTo'](chapter.location);
+
+        // Incase you do not want to have a dynamic inset map,
+        // rather want to keep it a static view but still change the
+        // bbox as main map move: comment out the below if section.
+        if (config.inset) {
+          if (chapter.location.zoom < 5) {
+            insetMap.flyTo({center: chapter.location.center, zoom: 0});
+          }
+          else {
+            insetMap.flyTo({center: chapter.location.center, zoom: 3});
+          }
+        }
+        if (config.showMarkers) {
+            marker.setLngLat(chapter.location.center);
+        }
+        if (chapter.onChapterEnter.length > 0) {
+            chapter.onChapterEnter.forEach(setLayerOpacity);
+        }
+        if (chapter.callback) {
+            window[chapter.callback]();
+        }
+        if (chapter.rotateAnimation) {
+            map.once('moveend', () => {
+                const rotateNumber = map.getBearing();
+                map.rotateTo(rotateNumber + 180, {
+                    duration: 30000, easing: function (t) {
+                        return t;
+                    }
+                });
+            });
+        }
+        if (config.auto) {
+             var next_chapter = (current_chapter + 1) % config.chapters.length;
+             map.once('moveend', () => {
+                 document.querySelectorAll('[data-scrollama-index="' + next_chapter.toString() + '"]')[0].scrollIntoView();
+             });
+        }
+    })
+    .onStepExit(response => {
+        var chapter = config.chapters.find(chap => chap.id === response.element.id);
+        response.element.classList.remove('active');
+        if (chapter.onChapterExit.length > 0) {
+            chapter.onChapterExit.forEach(setLayerOpacity);
+        }
+    });
+
+
+    if (config.auto) {
+        document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
+    }
+});
+
+//Helper functions for insetmap
+function getInsetBounds() {
+            let bounds = map.getBounds();
+
+            let boundsJson = {
+                "type": "FeatureCollection",
+                "features": [{
+                    "type": "Feature",
+                    "properties": {},
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [
+                            [
+                                [
+                                    bounds._sw.lng,
+                                    bounds._sw.lat
+                                ],
+                                [
+                                    bounds._ne.lng,
+                                    bounds._sw.lat
+                                ],
+                                [
+                                    bounds._ne.lng,
+                                    bounds._ne.lat
+                                ],
+                                [
+                                    bounds._sw.lng,
+                                    bounds._ne.lat
+                                ],
+                                [
+                                    bounds._sw.lng,
+                                    bounds._sw.lat
+                                ]
+                            ]
+                        ]
+                    }
+                }]
+            }
+
+            if (initLoad) {
+                addInsetLayer(boundsJson);
+                initLoad = false;
+            } else {
+                updateInsetLayer(boundsJson);
+            }
+
+        }
+
+function addInsetLayer(bounds) {
+    insetMap.addSource('boundsSource', {
+        'type': 'geojson',
+        'data': bounds
+    });
+
+    insetMap.addLayer({
+        'id': 'boundsLayer',
+        'type': 'fill',
+        'source': 'boundsSource', // reference the data source
+        'layout': {},
+        'paint': {
+            'fill-color': '#fff', // blue color fill
+            'fill-opacity': 0.2
+        }
+    });
+    // // Add a black outline around the polygon.
+    insetMap.addLayer({
+        'id': 'outlineLayer',
+        'type': 'line',
+        'source': 'boundsSource',
+        'layout': {},
+        'paint': {
+            'line-color': '#000',
+            'line-width': 1
+        }
+    });
+}
+
+function updateInsetLayer(bounds) {
+    insetMap.getSource('boundsSource').setData(bounds);
+}
+
+
+
+// setup resize event
+window.addEventListener('resize', scroller.resize);
+
+</script>
+
+
+
+</body>
+</html>
